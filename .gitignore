@@ -1,6 +1,11 @@
 # fxgl
 system/
 
+# app
+**/data/*
+**/model/*
+!**/.placeholder
+
 # bloop and metals
 .bloop
 .bsp
