@@ -1,5 +1,6 @@
 package nivanov.chords.common
 
+import com.almasb.fxgl.core.math.FXGLMath.random
 import com.thoughtworks.xstream.XStream
 import javafx.geometry.Point2D
 import nivanov.chords.audio.AudioUtil.Pcp
@@ -11,7 +12,6 @@ import smile.classification.Classifier
 
 import scala.collection.concurrent.TrieMap
 import scala.collection.mutable.ArraySeq
-import scala.util.Random
 
 class GameState:
   lazy val model =
@@ -19,7 +19,7 @@ class GameState:
     ModelWrapper(model.asInstanceOf[Classifier[Pcp]])
 
   val meteors = TrieMap.empty[Chord, List[MeteorComponent]]
-  val chords = Constants.chordGroups(0) //Random.shuffle(ArraySeq.from(Chord.values)).take(6)
+  val chords = Constants.chordGroups(random(0, Constants.chordGroups.size - 1))
   val chordPanes = TrieMap.empty[Chord, ChordPane]
 
   var planetCenter = Point2D.ZERO
